@@ -26,14 +26,22 @@ makeCacheMatrix <- function(x = matrix())
 
 cacheSolve <- function(x, ...) 
 {  
+        # Call function getInvMatrix() and assign the value to invMatrix
         invMatrix <- x$getInvMatrix()
+        
+        # Show message when the inversed matrix has exited already
         if(!is.null(invMatrix))
         {
                 message("getting cached inverse matrix")
                 return(invMatrix)
         }
+        
+        # Assign value of function get() to matrix
         matrix <- x$get()
+        
+        # Compute the inverse of matrix
         invMatrix <- solve(matrix, ...)
+        
         x$setInvMatrix(invMatrix)
         invMatrix   
 }
